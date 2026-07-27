@@ -646,8 +646,6 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: center;
 }
-.sponsor-slot-filled { border-style: solid; border-color: rgba(255,255,255,0.15); background: #fff; }
-.sponsor-slot-filled img { max-width: 75%; max-height: 60%; width: auto; height: auto; }
 .sponsor-slot span {
   width: 64px;
   height: 64px;
@@ -673,14 +671,28 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
 }
 .sponsor-badge {
+  width: 150px;
+  height: 150px;
+  border-radius: var(--radius);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .sponsor-badge img {
-  max-height: 150px;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
+  height: auto;
   display: block;
+}
+.sponsor-badge-white {
+  background: #fff;
+  padding: 8px;
+}
+.sponsor-badge-white img {
+  max-width: 100%;
+  max-height: 100%;
 }
 .sponsor-cta {
   margin-top: 28px;
