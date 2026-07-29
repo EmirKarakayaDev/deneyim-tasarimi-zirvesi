@@ -632,9 +632,9 @@ a { color: inherit; text-decoration: none; }
 .section-lead-light { color: rgba(255,255,255,0.65); }
 .sponsor-grid {
   margin: 40px auto 0;
-  max-width: 900px;
+  max-width: 700px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .sponsor-slot {
@@ -665,6 +665,9 @@ a { color: inherit; text-decoration: none; }
 }
 .sponsor-row {
   margin-top: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: center;
   gap: 48px;
