@@ -919,5 +919,5 @@ a.contact-value:hover { color: var(--ink); }
   .speaker-card-featured .speaker-avatar { aspect-ratio: 4 / 3; }
   .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
   .sponsor-row { gap: 20px; }
-  .sponsor-badge { width: calc(50% - 10px); height: 120px; }
+  .sponsor-badge { width: calc(50% - 10px); height: auto; aspect-ratio: 1 / 1; }
 }
