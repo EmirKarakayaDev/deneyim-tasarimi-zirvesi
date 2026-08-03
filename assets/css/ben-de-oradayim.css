@@ -20,6 +20,14 @@
 .site-header .logo span { color: var(--gold-dark); }
 .site-header .nav-toggle span { background: var(--ink); }
 
+#site-header .header-actions .btn-primary {
+  background: var(--ink);
+  color: #fff;
+}
+#site-header .header-actions .btn-primary:hover {
+  background: var(--gold-dark);
+}
+
 .bdo-container {
   max-width: 640px;
   text-align: center;
