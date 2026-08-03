@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     offsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, offsetY));
   }
 
-  function draw() {
+  function draw(isExport) {
     ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
 
     if (frameTemplate.complete && frameTemplate.naturalWidth) {
@@ -103,13 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
 
     const name = nameInput.value.trim();
-    if (name) {
+    if (name || !isExport) {
       ctx.save();
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = name ? '#ffffff' : 'rgba(255, 255, 255, 0.5)';
       ctx.font = '600 38px Poppins, Inter, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(name, FRAME_CX, NAME_Y);
+      ctx.fillText(name || 'Adınız Soyadınız', FRAME_CX, NAME_Y);
       ctx.restore();
     }
   }
@@ -224,9 +224,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   downloadBtn.addEventListener('click', () => {
     if (!userImg) return;
+    draw(true);
     const link = document.createElement('a');
     link.download = 'ben-de-oradayim.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
+    draw();
   });
 });
