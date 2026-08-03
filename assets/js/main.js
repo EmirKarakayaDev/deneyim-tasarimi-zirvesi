@@ -27,7 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetEl = document.querySelector(id);
       if (!targetEl) return;
       e.preventDefault();
-      history.pushState(null, '', id);
+      if (id === '#top') {
+        history.pushState(null, '', window.location.pathname);
+      } else {
+        history.pushState(null, '', id);
+      }
       if (lenis) {
         lenis.scrollTo(targetEl, { offset: -32 });
       } else {
