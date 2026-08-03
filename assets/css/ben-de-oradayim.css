@@ -34,8 +34,16 @@
 }
 
 .bdo-title {
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(24px, 4vw, 34px);
   margin-bottom: 12px;
+}
+
+.bdo-title-line1 {
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .bdo-title-line1 { white-space: normal; }
 }
 
 .bdo-lead {
