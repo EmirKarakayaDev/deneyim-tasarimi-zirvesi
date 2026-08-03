@@ -211,10 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('mousemove', pointerMove);
   window.addEventListener('mouseup', pointerUp);
 
-  canvas.addEventListener('touchstart', pointerDown, { passive: true });
-  canvas.addEventListener('touchmove', pointerMove, { passive: false });
-  canvas.addEventListener('touchend', pointerUp);
-
   function setZoom(value) {
     if (!userImg) return;
     zoom = Math.min(3, Math.max(1, value));
