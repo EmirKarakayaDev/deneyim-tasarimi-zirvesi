@@ -139,11 +139,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   nameInput.addEventListener('input', () => draw());
 
-  canvas.addEventListener('click', () => {
+  function canvasScaleFactor() {
+    return CANVAS_W / canvas.getBoundingClientRect().width;
+  }
+
+  function isPointInFrame(clientX, clientY) {
+    const rect = canvas.getBoundingClientRect();
+    const factor = canvasScaleFactor();
+    const x = (clientX - rect.left) * factor;
+    const y = (clientY - rect.top) * factor;
+    const frameX = FRAME_CX - FRAME_SIZE / 2;
+    const frameY = FRAME_CY - FRAME_SIZE / 2;
+    return x >= frameX && x <= frameX + FRAME_SIZE && y >= frameY && y <= frameY + FRAME_SIZE;
+  }
+
+  canvas.addEventListener('click', (e) => {
     if (didDrag) {
       didDrag = false;
       return;
     }
+    if (!isPointInFrame(e.clientX, e.clientY)) return;
     fileInput.click();
   });
 
@@ -154,18 +169,16 @@ document.addEventListener('DOMContentLoaded', () => {
   canvas.addEventListener('dragover', (e) => e.preventDefault());
   canvas.addEventListener('drop', (e) => {
     e.preventDefault();
+    if (!isPointInFrame(e.clientX, e.clientY)) return;
     loadImageFile(e.dataTransfer.files[0]);
   });
 
-  function canvasScaleFactor() {
-    return CANVAS_W / canvas.getBoundingClientRect().width;
-  }
-
   function pointerDown(e) {
     if (!userImg) return;
+    const point = e.touches ? e.touches[0] : e;
+    if (!isPointInFrame(point.clientX, point.clientY)) return;
     dragging = true;
     didDrag = false;
-    const point = e.touches ? e.touches[0] : e;
     dragStartX = point.clientX;
     dragStartY = point.clientY;
     dragStartOffsetX = offsetX;
@@ -189,6 +202,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function pointerUp() {
     dragging = false;
   }
+
+  canvas.addEventListener('mousemove', (e) => {
+    canvas.classList.toggle('is-hover-frame', isPointInFrame(e.clientX, e.clientY));
+  });
 
   canvas.addEventListener('mousedown', pointerDown);
   window.addEventListener('mousemove', pointerMove);

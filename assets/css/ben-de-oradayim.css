@@ -64,11 +64,15 @@
   width: 100%;
   height: auto;
   touch-action: none;
-  cursor: grab;
+  cursor: default;
   background: var(--ink);
 }
 
-#bdo-canvas:active {
+#bdo-canvas.is-hover-frame {
+  cursor: grab;
+}
+
+#bdo-canvas.is-hover-frame:active {
   cursor: grabbing;
 }
 
