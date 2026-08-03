@@ -917,5 +917,7 @@ a.contact-value:hover { color: var(--ink); }
   .hero-meta-divider { display: none; }
   .speaker-grid { grid-template-columns: 1fr; }
   .speaker-card-featured .speaker-avatar { aspect-ratio: 4 / 3; }
-  .sponsor-grid { grid-template-columns: 1fr; }
+  .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
+  .sponsor-row { gap: 20px; }
+  .sponsor-badge { width: calc(50% - 10px); height: 120px; }
 }

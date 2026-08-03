@@ -84,10 +84,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoModalClose = document.getElementById('video-modal-close');
 
   if (videoModal && videoModalPlayer) {
+    const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
+
     const openVideoModal = () => {
       videoModal.classList.add('is-open');
       videoModalPlayer.currentTime = 0;
       videoModalPlayer.play();
+
+      if (isMobile()) {
+        if (videoModalPlayer.webkitEnterFullscreen) {
+          videoModalPlayer.webkitEnterFullscreen();
+        } else if (videoModalPlayer.requestFullscreen) {
+          videoModalPlayer.requestFullscreen().catch(() => {});
+        }
+      }
     };
 
     const closeVideoModal = () => {
