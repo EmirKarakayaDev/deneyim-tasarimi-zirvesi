@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ben de Oradayım! | Deneyim Tasarımı Zirvesi 2026</title>
+<meta name="description" content="29 Eylül'de Deneyim Tasarımı Zirvesi'ne katılacağını duyur — fotoğrafını yükle, kendi görselini oluştur ve paylaş.">
+<link rel="icon" type="image/png" href="assets/img/xmp.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/ben-de-oradayim.css">
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="index.html#top" class="logo">Deneyim Tasarımı <span>Zirvesi</span></a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="index.html#top">Ana Sayfa</a>
+      <a href="index.html#katilim">Kayıt Ol</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="index.html#katilim" class="btn btn-primary btn-sm">Kayıt Ol</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="bdo-section">
+    <div class="container bdo-container">
+      <p class="section-eyebrow">29 Eylül 2026</p>
+      <h1 class="bdo-title">Ben de Oradayım!</h1>
+      <p class="bdo-lead">Fotoğrafını yükle, çerçevenin ortasına yerleştir ve Deneyim Tasarımı Zirvesi'ne katılacağını duyur.</p>
+
+      <div class="bdo-app">
+        <div class="bdo-canvas-wrap">
+          <canvas id="bdo-canvas" width="1080" height="1350"></canvas>
+          <input type="file" id="bdo-file-input" accept="image/png, image/jpeg, image/gif" hidden>
+        </div>
+
+        <div class="bdo-controls">
+          <p class="bdo-controls-hint">Fotoğrafına tıkla veya sürükle-bırak ile ekle. Konumlandırmak için sürükle, yakınlaştırmak için kaydırıcıyı kullan.</p>
+
+          <div class="bdo-field">
+            <label for="bdo-name-input">İsminiz</label>
+            <input type="text" id="bdo-name-input" maxlength="40" placeholder="Adınız Soyadınız">
+          </div>
+
+          <div class="bdo-zoom-row">
+            <button type="button" id="bdo-zoom-out" class="bdo-zoom-btn" aria-label="Uzaklaştır">−</button>
+            <input type="range" id="bdo-zoom-slider" min="100" max="300" value="100" step="1">
+            <button type="button" id="bdo-zoom-in" class="bdo-zoom-btn" aria-label="Yakınlaştır">+</button>
+          </div>
+
+          <div class="bdo-actions">
+            <button type="button" id="bdo-reset" class="btn btn-ghost">Sıfırla</button>
+            <button type="button" id="bdo-download" class="btn btn-primary" disabled>İndir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; 2026 Deneyim Tasarımı Zirvesi. Tüm hakları saklıdır.</p>
+    <a href="index.html#top" class="footer-top">Ana Sayfaya Dön ↑</a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/ben-de-oradayim.js"></script>
+</body>
+</html>

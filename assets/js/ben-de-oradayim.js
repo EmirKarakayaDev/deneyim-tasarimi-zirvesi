@@ -1,0 +1,232 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('bdo-canvas');
+  const ctx = canvas.getContext('2d');
+  const fileInput = document.getElementById('bdo-file-input');
+  const zoomSlider = document.getElementById('bdo-zoom-slider');
+  const zoomInBtn = document.getElementById('bdo-zoom-in');
+  const zoomOutBtn = document.getElementById('bdo-zoom-out');
+  const resetBtn = document.getElementById('bdo-reset');
+  const downloadBtn = document.getElementById('bdo-download');
+  const nameInput = document.getElementById('bdo-name-input');
+
+  const CANVAS_W = canvas.width;
+  const CANVAS_H = canvas.height;
+  const FRAME_SIZE = 600;
+  const FRAME_CX = CANVAS_W / 2;
+  const FRAME_CY = CANVAS_H / 2 - 40;
+  const FRAME_RADIUS = 36;
+  const NAME_Y = 1180;
+
+  const frameTemplate = new Image();
+  frameTemplate.src = 'assets/img/ben-de-oradayim-cerceve.png';
+
+  let userImg = null;
+  let zoom = 1;
+  let baseScale = 1;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  let dragging = false;
+  let didDrag = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragStartOffsetX = 0;
+  let dragStartOffsetY = 0;
+
+  function roundedRectPath(x, y, size, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.arcTo(x + size, y, x + size, y + size, radius);
+    ctx.arcTo(x + size, y + size, x, y + size, radius);
+    ctx.arcTo(x, y + size, x, y, radius);
+    ctx.arcTo(x, y, x + size, y, radius);
+    ctx.closePath();
+  }
+
+  function clampOffsets() {
+    const scale = baseScale * zoom;
+    const scaledW = userImg.width * scale;
+    const scaledH = userImg.height * scale;
+    const maxOffsetX = Math.max(0, (scaledW - FRAME_SIZE) / 2);
+    const maxOffsetY = Math.max(0, (scaledH - FRAME_SIZE) / 2);
+    offsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, offsetX));
+    offsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, offsetY));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+
+    if (frameTemplate.complete && frameTemplate.naturalWidth) {
+      ctx.drawImage(frameTemplate, 0, 0, CANVAS_W, CANVAS_H);
+    }
+
+    const frameX = FRAME_CX - FRAME_SIZE / 2;
+    const frameY = FRAME_CY - FRAME_SIZE / 2;
+
+    if (userImg) {
+      const scale = baseScale * zoom;
+      const drawW = userImg.width * scale;
+      const drawH = userImg.height * scale;
+
+      ctx.save();
+      roundedRectPath(frameX, frameY, FRAME_SIZE, FRAME_RADIUS);
+      ctx.clip();
+      ctx.drawImage(
+        userImg,
+        FRAME_CX + offsetX - drawW / 2,
+        FRAME_CY + offsetY - drawH / 2,
+        drawW,
+        drawH
+      );
+      ctx.restore();
+    } else {
+      ctx.save();
+      roundedRectPath(frameX, frameY, FRAME_SIZE, FRAME_RADIUS);
+      ctx.fillStyle = 'rgba(21, 23, 31, 0.45)';
+      ctx.fill();
+      ctx.restore();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '600 40px Poppins, Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('+', FRAME_CX, FRAME_CY - 20);
+      ctx.font = '500 22px Inter, sans-serif';
+      ctx.fillText('Fotoğrafını Ekle', FRAME_CX, FRAME_CY + 30);
+    }
+
+    ctx.save();
+    roundedRectPath(frameX, frameY, FRAME_SIZE, FRAME_RADIUS);
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = '#ffffff';
+    ctx.stroke();
+    ctx.restore();
+
+    const name = nameInput.value.trim();
+    if (name) {
+      ctx.save();
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '600 38px Poppins, Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(name, FRAME_CX, NAME_Y);
+      ctx.restore();
+    }
+  }
+
+  function loadImageFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        userImg = img;
+        baseScale = Math.max(FRAME_SIZE / img.width, FRAME_SIZE / img.height);
+        zoom = 1;
+        zoomSlider.value = 100;
+        offsetX = 0;
+        offsetY = 0;
+        downloadBtn.disabled = false;
+        draw();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  frameTemplate.onload = draw;
+  draw();
+
+  nameInput.addEventListener('input', draw);
+
+  canvas.addEventListener('click', () => {
+    if (didDrag) {
+      didDrag = false;
+      return;
+    }
+    fileInput.click();
+  });
+
+  fileInput.addEventListener('change', (e) => {
+    loadImageFile(e.target.files[0]);
+  });
+
+  canvas.addEventListener('dragover', (e) => e.preventDefault());
+  canvas.addEventListener('drop', (e) => {
+    e.preventDefault();
+    loadImageFile(e.dataTransfer.files[0]);
+  });
+
+  function canvasScaleFactor() {
+    return CANVAS_W / canvas.getBoundingClientRect().width;
+  }
+
+  function pointerDown(e) {
+    if (!userImg) return;
+    dragging = true;
+    didDrag = false;
+    const point = e.touches ? e.touches[0] : e;
+    dragStartX = point.clientX;
+    dragStartY = point.clientY;
+    dragStartOffsetX = offsetX;
+    dragStartOffsetY = offsetY;
+  }
+
+  function pointerMove(e) {
+    if (!dragging || !userImg) return;
+    e.preventDefault();
+    const point = e.touches ? e.touches[0] : e;
+    const dx = point.clientX - dragStartX;
+    const dy = point.clientY - dragStartY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
+    const factor = canvasScaleFactor();
+    offsetX = dragStartOffsetX + dx * factor;
+    offsetY = dragStartOffsetY + dy * factor;
+    clampOffsets();
+    draw();
+  }
+
+  function pointerUp() {
+    dragging = false;
+  }
+
+  canvas.addEventListener('mousedown', pointerDown);
+  window.addEventListener('mousemove', pointerMove);
+  window.addEventListener('mouseup', pointerUp);
+
+  canvas.addEventListener('touchstart', pointerDown, { passive: true });
+  canvas.addEventListener('touchmove', pointerMove, { passive: false });
+  canvas.addEventListener('touchend', pointerUp);
+
+  function setZoom(value) {
+    if (!userImg) return;
+    zoom = Math.min(3, Math.max(1, value));
+    zoomSlider.value = Math.round(zoom * 100);
+    clampOffsets();
+    draw();
+  }
+
+  zoomSlider.addEventListener('input', () => setZoom(zoomSlider.value / 100));
+  zoomInBtn.addEventListener('click', () => setZoom(zoom + 0.1));
+  zoomOutBtn.addEventListener('click', () => setZoom(zoom - 0.1));
+
+  resetBtn.addEventListener('click', () => {
+    userImg = null;
+    zoom = 1;
+    zoomSlider.value = 100;
+    offsetX = 0;
+    offsetY = 0;
+    downloadBtn.disabled = true;
+    fileInput.value = '';
+    nameInput.value = '';
+    draw();
+  });
+
+  downloadBtn.addEventListener('click', () => {
+    if (!userImg) return;
+    const link = document.createElement('a');
+    link.download = 'ben-de-oradayim.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+});

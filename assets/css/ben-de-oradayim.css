@@ -1,0 +1,130 @@
+.bdo-section {
+  padding: 140px 0 96px;
+  background: var(--bg-alt);
+  min-height: 100vh;
+}
+
+.bdo-container {
+  max-width: 640px;
+  text-align: center;
+}
+
+.bdo-title {
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 12px;
+}
+
+.bdo-lead {
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+}
+
+.bdo-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.bdo-canvas-wrap {
+  width: 100%;
+  max-width: 420px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  line-height: 0;
+}
+
+#bdo-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: grab;
+  background: var(--ink);
+}
+
+#bdo-canvas:active {
+  cursor: grabbing;
+}
+
+.bdo-controls {
+  width: 100%;
+  max-width: 420px;
+}
+
+.bdo-controls-hint {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.bdo-field {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.bdo-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.bdo-field input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.bdo-field input[type="text"]:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.bdo-zoom-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.bdo-zoom-btn {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bdo-zoom-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
+.bdo-zoom-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--gold);
+}
+
+.bdo-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.bdo-actions .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
