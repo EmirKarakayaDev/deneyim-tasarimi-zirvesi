@@ -4,6 +4,22 @@
   min-height: 100vh;
 }
 
+/* Bu sayfada navbar hep aynı (açık zeminli) görünsün, scroll'da renk değişmesin */
+.site-header {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-color: var(--line);
+  box-shadow: 0 4px 20px rgba(21, 23, 31, 0.05);
+}
+.site-header .logo,
+.site-header .main-nav a {
+  color: var(--ink-soft);
+}
+.site-header .logo { color: var(--ink); }
+.site-header .main-nav a:hover { color: var(--ink); }
+.site-header .logo span { color: var(--gold-dark); }
+.site-header .nav-toggle span { background: var(--ink); }
+
 .bdo-container {
   max-width: 640px;
   text-align: center;

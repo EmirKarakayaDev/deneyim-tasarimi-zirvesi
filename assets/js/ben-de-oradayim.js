@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const CANVAS_W = canvas.width;
   const CANVAS_H = canvas.height;
-  const FRAME_SIZE = 600;
+  const FRAME_SIZE = 630;
   const FRAME_CX = CANVAS_W / 2;
   const FRAME_CY = CANVAS_H / 2 - 40;
   const FRAME_RADIUS = 36;
