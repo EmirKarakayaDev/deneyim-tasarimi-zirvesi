@@ -235,13 +235,33 @@ document.addEventListener('DOMContentLoaded', () => {
     draw();
   });
 
+  function isIOS() {
+    return /iP(hone|od|ad)/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
   downloadBtn.addEventListener('click', () => {
     if (!userImg) return;
     draw(true);
-    const link = document.createElement('a');
-    link.download = 'ben-de-oradayim.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    const dataUrl = canvas.toDataURL('image/png');
+
+    if (isIOS()) {
+      const win = window.open();
+      if (win) {
+        win.document.write(
+          '<title>Ben de Oradayım</title>' +
+          '<body style="margin:0;background:#15171f;">' +
+          '<p style="font-family:sans-serif;color:#fff;text-align:center;padding:16px;margin:0;">Görsele uzun basıp "Fotoğrafları Kaydet" seçeneğini kullan.</p>' +
+          '<img src="' + dataUrl + '" style="display:block;width:100%;height:auto;">' +
+          '</body>'
+        );
+      }
+    } else {
+      const link = document.createElement('a');
+      link.download = 'ben-de-oradayim.png';
+      link.href = dataUrl;
+      link.click();
+    }
     draw();
   });
 });
