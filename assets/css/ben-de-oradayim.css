@@ -51,6 +51,7 @@
 }
 
 .bdo-canvas-wrap {
+  position: relative;
   width: 100%;
   max-width: 420px;
   border-radius: var(--radius);
@@ -68,11 +69,21 @@
   background: var(--ink);
 }
 
-#bdo-canvas.is-hover-frame {
+.bdo-frame-hit {
+  position: absolute;
+  left: 20.8333%;
+  top: 23.7037%;
+  width: 58.3333%;
+  height: 46.6667%;
+  touch-action: none;
+  cursor: default;
+}
+
+.bdo-frame-hit.is-hover-frame {
   cursor: grab;
 }
 
-#bdo-canvas.is-hover-frame:active {
+.bdo-frame-hit.is-hover-frame:active {
   cursor: grabbing;
 }
 

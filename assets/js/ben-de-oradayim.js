@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('bdo-canvas');
   const ctx = canvas.getContext('2d');
+  const frameHit = document.getElementById('bdo-frame-hit');
   const fileInput = document.getElementById('bdo-file-input');
   const zoomSlider = document.getElementById('bdo-zoom-slider');
   const zoomInBtn = document.getElementById('bdo-zoom-in');
@@ -143,22 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return CANVAS_W / canvas.getBoundingClientRect().width;
   }
 
-  function isPointInFrame(clientX, clientY) {
-    const rect = canvas.getBoundingClientRect();
-    const factor = canvasScaleFactor();
-    const x = (clientX - rect.left) * factor;
-    const y = (clientY - rect.top) * factor;
-    const frameX = FRAME_CX - FRAME_SIZE / 2;
-    const frameY = FRAME_CY - FRAME_SIZE / 2;
-    return x >= frameX && x <= frameX + FRAME_SIZE && y >= frameY && y <= frameY + FRAME_SIZE;
-  }
-
-  canvas.addEventListener('click', (e) => {
+  frameHit.addEventListener('click', () => {
     if (didDrag) {
       didDrag = false;
       return;
     }
-    if (!isPointInFrame(e.clientX, e.clientY)) return;
     fileInput.click();
   });
 
@@ -166,17 +156,15 @@ document.addEventListener('DOMContentLoaded', () => {
     loadImageFile(e.target.files[0]);
   });
 
-  canvas.addEventListener('dragover', (e) => e.preventDefault());
-  canvas.addEventListener('drop', (e) => {
+  frameHit.addEventListener('dragover', (e) => e.preventDefault());
+  frameHit.addEventListener('drop', (e) => {
     e.preventDefault();
-    if (!isPointInFrame(e.clientX, e.clientY)) return;
     loadImageFile(e.dataTransfer.files[0]);
   });
 
   function pointerDown(e) {
     if (!userImg) return;
     const point = e.touches ? e.touches[0] : e;
-    if (!isPointInFrame(point.clientX, point.clientY)) return;
     dragging = true;
     didDrag = false;
     dragStartX = point.clientX;
@@ -203,13 +191,16 @@ document.addEventListener('DOMContentLoaded', () => {
     dragging = false;
   }
 
-  canvas.addEventListener('mousemove', (e) => {
-    canvas.classList.toggle('is-hover-frame', isPointInFrame(e.clientX, e.clientY));
-  });
+  frameHit.addEventListener('mouseenter', () => frameHit.classList.add('is-hover-frame'));
+  frameHit.addEventListener('mouseleave', () => frameHit.classList.remove('is-hover-frame'));
 
-  canvas.addEventListener('mousedown', pointerDown);
+  frameHit.addEventListener('mousedown', pointerDown);
   window.addEventListener('mousemove', pointerMove);
   window.addEventListener('mouseup', pointerUp);
+
+  frameHit.addEventListener('touchstart', pointerDown, { passive: true });
+  frameHit.addEventListener('touchmove', pointerMove, { passive: false });
+  frameHit.addEventListener('touchend', pointerUp);
 
   function setZoom(value) {
     if (!userImg) return;
@@ -249,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const win = window.open();
       if (win) {
         win.document.write(
-          '<title>Ben de Oradayım</title>' +
+          '<title>Ben de Varım</title>' +
           '<body style="margin:0;background:#15171f;">' +
           '<p style="font-family:sans-serif;color:#fff;text-align:center;padding:16px;margin:0;">Görsele uzun basıp "Fotoğrafları Kaydet" seçeneğini kullan.</p>' +
           '<img src="' + dataUrl + '" style="display:block;width:100%;height:auto;">' +
