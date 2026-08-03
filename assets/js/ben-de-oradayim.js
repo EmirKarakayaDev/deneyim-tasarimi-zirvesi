@@ -134,10 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.readAsDataURL(file);
   }
 
-  frameTemplate.onload = draw;
+  frameTemplate.onload = () => draw();
   draw();
 
-  nameInput.addEventListener('input', draw);
+  nameInput.addEventListener('input', () => draw());
 
   canvas.addEventListener('click', () => {
     if (didDrag) {
