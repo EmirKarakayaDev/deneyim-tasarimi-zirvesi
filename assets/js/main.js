@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', () => {
     header.classList.toggle('is-scrolled', window.scrollY > 10);
+    if (mainNav.classList.contains('is-open')) {
+      mainNav.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
   });
 
   navToggle.addEventListener('click', () => {
@@ -54,6 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
       mainNav.classList.remove('is-open');
       navToggle.setAttribute('aria-expanded', 'false');
     });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mainNav.classList.contains('is-open')) return;
+    if (mainNav.contains(e.target) || navToggle.contains(e.target)) return;
+    mainNav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
   });
 
   document.querySelectorAll('.faq-item').forEach((item) => {

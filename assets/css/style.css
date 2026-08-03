@@ -899,13 +899,26 @@ a.contact-value:hover { color: var(--ink); }
     top: 100%;
     left: 0;
     right: 0;
+    display: flex;
     background: #fff;
     flex-direction: column;
-    padding: 12px 24px 24px;
+    gap: 0;
+    padding: 0 24px;
     border-bottom: 1px solid var(--line);
-    display: none;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: max-height 0.3s ease, opacity 0.25s ease, transform 0.25s ease, padding 0.3s ease;
   }
-  .main-nav.is-open { display: flex; gap: 0; }
+  .main-nav.is-open {
+    max-height: 480px;
+    opacity: 1;
+    padding: 12px 24px 24px;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
   .main-nav a { padding: 10px 0; }
   .site-header .main-nav a { color: var(--ink-soft); }
   .site-header .main-nav a:hover { color: var(--ink); }
