@@ -87,17 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.restore();
 
       ctx.fillStyle = '#ffffff';
-      ctx.font = '600 40px Poppins, Inter, sans-serif';
+      ctx.font = '600 56px Poppins, Inter, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('+', FRAME_CX, FRAME_CY - 20);
-      ctx.font = '500 22px Inter, sans-serif';
-      ctx.fillText('Fotoğrafını Ekle', FRAME_CX, FRAME_CY + 30);
+      ctx.fillText('+', FRAME_CX, FRAME_CY - 26);
+      ctx.font = '600 28px Inter, sans-serif';
+      ctx.fillText('Fotoğrafını Ekle', FRAME_CX, FRAME_CY + 36);
     }
 
     ctx.save();
     roundedRectPath(frameX, frameY, FRAME_SIZE, FRAME_RADIUS);
-    ctx.lineWidth = 10;
+    ctx.lineWidth = 7;
     ctx.strokeStyle = '#ffffff';
     ctx.stroke();
     ctx.restore();
