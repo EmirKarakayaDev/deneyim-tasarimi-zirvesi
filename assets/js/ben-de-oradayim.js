@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } else {
       const link = document.createElement('a');
-      link.download = 'ben-de-oradayim.png';
+      link.download = 'ben-de-varim.png';
       link.href = dataUrl;
       link.click();
     }
