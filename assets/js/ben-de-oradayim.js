@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const CANVAS_W = canvas.width;
   const CANVAS_H = canvas.height;
-  const FRAME_SIZE = 630;
-  const FRAME_CX = CANVAS_W / 2;
-  const FRAME_CY = CANVAS_H / 2 - 40;
-  const FRAME_RADIUS = 36;
-  const NAME_Y = 1180;
+  const FRAME_SIZE = 580;
+  const FRAME_CX = 546;
+  const FRAME_CY = 570;
+  const FRAME_RADIUS = 40;
+  const NAME_Y = 930;
 
   const frameTemplate = new Image();
   frameTemplate.src = '/assets/img/ben-de-oradayim-cerceve.png';
@@ -95,13 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.font = '600 28px Inter, sans-serif';
       ctx.fillText('Fotoğrafını Ekle', FRAME_CX, FRAME_CY + 36);
     }
-
-    ctx.save();
-    roundedRectPath(frameX, frameY, FRAME_SIZE, FRAME_RADIUS);
-    ctx.lineWidth = 7;
-    ctx.strokeStyle = '#ffffff';
-    ctx.stroke();
-    ctx.restore();
 
     const name = nameInput.value.trim();
     if (name || !isExport) {
