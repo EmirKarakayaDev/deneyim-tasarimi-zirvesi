@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (name || !isExport) {
       ctx.save();
       ctx.fillStyle = name ? '#ffffff' : 'rgba(255, 255, 255, 0.5)';
-      ctx.font = '600 38px Poppins, Inter, sans-serif';
+      ctx.font = '600 44px Poppins, Inter, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(name || 'Adınız Soyadınız', FRAME_CX, NAME_Y);
