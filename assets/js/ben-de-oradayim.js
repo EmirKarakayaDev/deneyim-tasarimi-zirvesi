@@ -229,9 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   }
 
-  downloadBtn.addEventListener('click', () => {
-    if (!userImg) return;
-    draw(true);
+  function fallbackDownload() {
     const dataUrl = canvas.toDataURL('image/png');
 
     if (isIOS()) {
@@ -251,6 +249,36 @@ document.addEventListener('DOMContentLoaded', () => {
       link.href = dataUrl;
       link.click();
     }
-    draw();
+  }
+
+  downloadBtn.addEventListener('click', () => {
+    if (!userImg) return;
+    draw(true);
+
+    canvas.toBlob(async (blob) => {
+      if (!blob) {
+        fallbackDownload();
+        draw();
+        return;
+      }
+
+      const file = new File([blob], 'ben-de-varim.png', { type: 'image/png' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: 'Ben de Varım' });
+          draw();
+          return;
+        } catch (err) {
+          if (err && err.name === 'AbortError') {
+            draw();
+            return;
+          }
+        }
+      }
+
+      fallbackDownload();
+      draw();
+    }, 'image/png');
   });
 });
