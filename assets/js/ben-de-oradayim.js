@@ -12,10 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const CANVAS_W = canvas.width;
   const CANVAS_H = canvas.height;
-  const FRAME_SIZE = 580;
-  const FRAME_CX = 546;
-  const FRAME_CY = 570;
-  const FRAME_RADIUS = 40;
+  const FRAME_X = 250;
+  const FRAME_Y = 281;
+  const FRAME_W = 591;
+  const FRAME_H = 579;
+  const FRAME_CX = FRAME_X + FRAME_W / 2;
+  const FRAME_CY = FRAME_Y + FRAME_H / 2;
+  const FRAME_RADII = { tl: 44, tr: 44, br: 44, bl: 0 };
   const NAME_Y = 930;
 
   const frameTemplate = new Image();
@@ -34,13 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let dragStartOffsetX = 0;
   let dragStartOffsetY = 0;
 
-  function roundedRectPath(x, y, size, radius) {
+  function framePath(x, y, w, h) {
+    const { tl, tr, br, bl } = FRAME_RADII;
     ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.arcTo(x + size, y, x + size, y + size, radius);
-    ctx.arcTo(x + size, y + size, x, y + size, radius);
-    ctx.arcTo(x, y + size, x, y, radius);
-    ctx.arcTo(x, y, x + size, y, radius);
+    ctx.moveTo(x + tl, y);
+    ctx.lineTo(x + w - tr, y);
+    ctx.arcTo(x + w, y, x + w, y + tr, tr);
+    ctx.lineTo(x + w, y + h - br);
+    ctx.arcTo(x + w, y + h, x + w - br, y + h, br);
+    ctx.lineTo(x + bl, y + h);
+    ctx.arcTo(x, y + h, x, y + h - bl, bl);
+    ctx.lineTo(x, y + tl);
+    ctx.arcTo(x, y, x + tl, y, tl);
     ctx.closePath();
   }
 
@@ -48,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const scale = baseScale * zoom;
     const scaledW = userImg.width * scale;
     const scaledH = userImg.height * scale;
-    const maxOffsetX = Math.max(0, (scaledW - FRAME_SIZE) / 2);
-    const maxOffsetY = Math.max(0, (scaledH - FRAME_SIZE) / 2);
+    const maxOffsetX = Math.max(0, (scaledW - FRAME_W) / 2);
+    const maxOffsetY = Math.max(0, (scaledH - FRAME_H) / 2);
     offsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, offsetX));
     offsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, offsetY));
   }
@@ -61,16 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.drawImage(frameTemplate, 0, 0, CANVAS_W, CANVAS_H);
     }
 
-    const frameX = FRAME_CX - FRAME_SIZE / 2;
-    const frameY = FRAME_CY - FRAME_SIZE / 2;
-
     if (userImg) {
       const scale = baseScale * zoom;
       const drawW = userImg.width * scale;
       const drawH = userImg.height * scale;
 
       ctx.save();
-      roundedRectPath(frameX, frameY, FRAME_SIZE, FRAME_RADIUS);
+      framePath(FRAME_X, FRAME_Y, FRAME_W, FRAME_H);
       ctx.clip();
       ctx.drawImage(
         userImg,
@@ -82,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.restore();
     } else {
       ctx.save();
-      roundedRectPath(frameX, frameY, FRAME_SIZE, FRAME_RADIUS);
+      framePath(FRAME_X, FRAME_Y, FRAME_W, FRAME_H);
       ctx.fillStyle = 'rgba(21, 23, 31, 0.45)';
       ctx.fill();
       ctx.restore();
@@ -115,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const img = new Image();
       img.onload = () => {
         userImg = img;
-        baseScale = Math.max(FRAME_SIZE / img.width, FRAME_SIZE / img.height);
+        baseScale = Math.max(FRAME_W / img.width, FRAME_H / img.height);
         zoom = 1;
         zoomSlider.value = 100;
         offsetX = 0;
