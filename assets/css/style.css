@@ -929,6 +929,7 @@ a.contact-value:hover { color: var(--ink); }
   .hero-meta-bar { gap: 20px; padding: 20px 24px; }
   .hero-meta-divider { display: none; }
   .speaker-grid { grid-template-columns: 1fr; }
+  .speaker-placeholder-desktop-only { display: none; }
   .speaker-card-featured .speaker-avatar { aspect-ratio: 4 / 3; }
   .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
   .sponsor-row { grid-template-columns: repeat(2, 1fr); gap: 20px; }
