@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const FRAME_CY = FRAME_Y + FRAME_H / 2;
   const FRAME_RADII = { tl: 44, tr: 44, br: 44, bl: 0 };
   const NAME_Y = 870;
-  const TITLE_Y = 916;
+  const TITLE_Y = 932;
 
   const frameTemplate = new Image();
   frameTemplate.src = '/assets/img/ben-de-oradayim-cerceve.png?v=2';
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (title || !isExport) {
       ctx.save();
       ctx.fillStyle = title ? 'rgba(255, 255, 255, 0.85)' : 'rgba(255, 255, 255, 0.35)';
-      ctx.font = '500 26px Inter, sans-serif';
+      ctx.font = '500 32px Inter, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(title || 'Şirket - Ünvan', FRAME_CX, TITLE_Y);
