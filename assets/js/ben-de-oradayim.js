@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const TITLE_Y = 932;
 
   const frameTemplate = new Image();
-  frameTemplate.src = '/assets/img/ben-de-oradayim-cerceve.png?v=2';
+  frameTemplate.src = '/assets/img/ben-de-oradayim-cerceve.png?v=3';
 
   let userImg = null;
   let zoom = 1;
