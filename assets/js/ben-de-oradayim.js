@@ -243,6 +243,10 @@ document.addEventListener('DOMContentLoaded', () => {
       (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   }
 
+  function isMobile() {
+    return isIOS() || /Android/i.test(navigator.userAgent);
+  }
+
   function fallbackDownload() {
     const dataUrl = canvas.toDataURL('image/png');
 
@@ -278,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const file = new File([blob], 'ben-de-varim.png', { type: 'image/png' });
 
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      if (isMobile() && navigator.canShare && navigator.canShare({ files: [file] })) {
         try {
           await navigator.share({ files: [file], title: 'Ben de Varım' });
           draw();
