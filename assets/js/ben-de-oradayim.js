@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.restore();
     }
 
-    const captionShift = title ? 0 : CAPTION_SHIFT_NO_TITLE;
+    const captionShift = (isExport && !title) ? CAPTION_SHIFT_NO_TITLE : 0;
     ctx.save();
     ctx.fillStyle = '#ffffff';
     ctx.font = '700 44px Poppins, Inter, sans-serif';
