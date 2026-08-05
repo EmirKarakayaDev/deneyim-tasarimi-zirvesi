@@ -12,17 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const CANVAS_W = canvas.width;
   const CANVAS_H = canvas.height;
-  const FRAME_X = 250;
-  const FRAME_Y = 281;
-  const FRAME_W = 591;
-  const FRAME_H = 579;
+  const FRAME_X = 265;
+  const FRAME_Y = 248;
+  const FRAME_W = 550;
+  const FRAME_H = 539;
   const FRAME_CX = FRAME_X + FRAME_W / 2;
   const FRAME_CY = FRAME_Y + FRAME_H / 2;
   const FRAME_RADII = { tl: 44, tr: 44, br: 44, bl: 0 };
-  const NAME_Y = 930;
+  const NAME_Y = 900;
 
   const frameTemplate = new Image();
-  frameTemplate.src = '/assets/img/ben-de-oradayim-cerceve.png';
+  frameTemplate.src = '/assets/img/ben-de-oradayim-cerceve.png?v=2';
 
   let userImg = null;
   let zoom = 1;
