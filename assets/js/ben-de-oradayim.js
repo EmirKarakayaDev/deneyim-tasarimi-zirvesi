@@ -149,7 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
   frameTemplate.onload = () => draw();
   draw();
 
-  nameInput.addEventListener('input', () => draw());
+  nameInput.addEventListener('input', () => {
+    if (nameInput.value.trim()) nameInput.classList.remove('is-invalid');
+    draw();
+  });
   titleInput.addEventListener('input', () => draw());
 
   function canvasScaleFactor() {
@@ -271,6 +274,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   downloadBtn.addEventListener('click', () => {
     if (!userImg) return;
+
+    if (!nameInput.value.trim()) {
+      nameInput.classList.add('is-invalid');
+      nameInput.focus();
+      nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     draw(true);
 
     canvas.toBlob(async (blob) => {
