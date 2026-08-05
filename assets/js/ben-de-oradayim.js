@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const FRAME_RADII = { tl: 44, tr: 44, br: 44, bl: 0 };
   const NAME_Y = 870;
   const TITLE_Y = 932;
+  const CAPTION_Y1 = 1032;
+  const CAPTION_Y2 = 1088;
+  const CAPTION_SHIFT_NO_TITLE = 45;
 
   const frameTemplate = new Image();
   frameTemplate.src = '/assets/img/ben-de-oradayim-cerceve.png?v=3';
@@ -124,6 +127,16 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fillText(title || 'Şirket - Ünvan', FRAME_CX, TITLE_Y);
       ctx.restore();
     }
+
+    const captionShift = title ? 0 : CAPTION_SHIFT_NO_TITLE;
+    ctx.save();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '700 44px Poppins, Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Deneyim Tasarımı Zirvesinde', FRAME_CX, CAPTION_Y1 - captionShift);
+    ctx.fillText('Ben de varım', FRAME_CX, CAPTION_Y2 - captionShift);
+    ctx.restore();
   }
 
   function updateDownloadState() {
