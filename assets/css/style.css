@@ -499,7 +499,7 @@ a { color: inherit; text-decoration: none; }
 }
 .speaker-card-featured .speaker-avatar-img { transition: transform 0.3s ease; }
 .speaker-card-featured:hover .speaker-avatar-img { transform: scale(1.06); }
-.speaker-avatar-img[src*="gorkem-ihlamur"] { object-position: 42% 55%; transform: scale(1.3); transform-origin: 42% 55%; }
+.speaker-avatar-img[src*="gorkem-ihlamur"] { object-position: 20% 55%; transform: scale(1.3); transform-origin: 20% 55%; }
 .speaker-card-featured:hover .speaker-avatar-img[src*="gorkem-ihlamur"] { transform: scale(1.38); }
 .speaker-avatar {
   width: 100%;
@@ -933,7 +933,7 @@ a.contact-value:hover { color: var(--ink); }
   .speaker-grid { grid-template-columns: 1fr; }
   .speaker-placeholder-desktop-only { display: none; }
   .speaker-card-featured .speaker-avatar { aspect-ratio: 4 / 3; }
-  .speaker-avatar-img[src*="gorkem-ihlamur"] { object-position: 42% 40%; transform-origin: 42% 40%; }
+  .speaker-avatar-img[src*="gorkem-ihlamur"] { object-position: 20% 40%; transform-origin: 20% 40%; }
   .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
   .sponsor-row { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
