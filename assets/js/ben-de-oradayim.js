@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (title || !isExport) {
       ctx.save();
       ctx.fillStyle = title ? 'rgba(255, 255, 255, 0.85)' : 'rgba(255, 255, 255, 0.35)';
-      ctx.font = '500 32px Inter, sans-serif';
+      ctx.font = '500 36px Inter, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(title || 'Şirket - Ünvan', FRAME_CX, TITLE_Y);
