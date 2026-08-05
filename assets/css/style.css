@@ -497,8 +497,10 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   padding: 0 20px;
 }
-.speaker-card-featured .speaker-avatar-img { object-position: 32% 22%; transform: scale(1.3); transform-origin: 32% 22%; transition: transform 0.3s ease; }
-.speaker-card-featured:hover .speaker-avatar-img { transform: scale(1.38); }
+.speaker-card-featured .speaker-avatar-img { transition: transform 0.3s ease; }
+.speaker-card-featured:hover .speaker-avatar-img { transform: scale(1.06); }
+.speaker-avatar-img[src*="gorkem-ihlamur"] { object-position: 32% 22%; transform: scale(1.3); transform-origin: 32% 22%; }
+.speaker-card-featured:hover .speaker-avatar-img[src*="gorkem-ihlamur"] { transform: scale(1.38); }
 .speaker-avatar {
   width: 100%;
   aspect-ratio: 1 / 1;
