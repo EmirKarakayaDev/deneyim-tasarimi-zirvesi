@@ -141,21 +141,6 @@
   border-color: var(--gold);
 }
 
-.bdo-field input[type="text"].is-invalid {
-  border-color: #e0453c;
-}
-
-.bdo-field-error {
-  display: none;
-  margin: 6px 0 0;
-  font-size: 13px;
-  color: #e0453c;
-}
-
-.bdo-field input[type="text"].is-invalid ~ .bdo-field-error {
-  display: block;
-}
-
 .bdo-zoom-row {
   display: flex;
   align-items: center;

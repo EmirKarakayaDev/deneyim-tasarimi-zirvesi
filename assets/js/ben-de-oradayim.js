@@ -126,6 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function updateDownloadState() {
+    downloadBtn.disabled = !userImg || !nameInput.value.trim();
+  }
+
   function loadImageFile(file) {
     if (!file || !file.type.startsWith('image/')) return;
     const reader = new FileReader();
@@ -138,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         zoomSlider.value = 100;
         offsetX = 0;
         offsetY = 0;
-        downloadBtn.disabled = false;
+        updateDownloadState();
         draw();
       };
       img.src = e.target.result;
@@ -150,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   draw();
 
   nameInput.addEventListener('input', () => {
-    if (nameInput.value.trim()) nameInput.classList.remove('is-invalid');
+    updateDownloadState();
     draw();
   });
   titleInput.addEventListener('input', () => draw());
@@ -235,9 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
     zoomSlider.value = 100;
     offsetX = 0;
     offsetY = 0;
-    downloadBtn.disabled = true;
     fileInput.value = '';
     nameInput.value = '';
+    updateDownloadState();
     draw();
   });
 
@@ -273,14 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   downloadBtn.addEventListener('click', () => {
-    if (!userImg) return;
-
-    if (!nameInput.value.trim()) {
-      nameInput.classList.add('is-invalid');
-      nameInput.focus();
-      nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+    if (!userImg || !nameInput.value.trim()) return;
 
     draw(true);
 
