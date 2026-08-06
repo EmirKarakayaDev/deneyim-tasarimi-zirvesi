@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.font = '700 44px Poppins, Inter, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('Deneyim Tasarımı Zirvesinde', FRAME_CX, CAPTION_Y1 - captionShift);
-    ctx.fillText('Ben de varım', FRAME_CX, CAPTION_Y2 - captionShift);
+    ctx.fillText("Deneyim Tasarımı Zirvesi'nde", FRAME_CX, CAPTION_Y1 - captionShift);
+    ctx.fillText('Ben de Varım', FRAME_CX, CAPTION_Y2 - captionShift);
     ctx.restore();
   }
 
