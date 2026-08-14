@@ -632,34 +632,58 @@ a { color: inherit; text-decoration: none; }
 .section-sponsors { text-align: center; }
 .section-sponsors .section-lead { margin-left: auto; margin-right: auto; }
 .section-lead-light { color: rgba(255,255,255,0.65); }
-.sponsor-grid {
-  margin: 40px auto 0;
-  max-width: 700px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.sponsor-tier { margin-top: 40px; }
+.sponsor-tier:first-of-type { margin-top: 40px; }
+.sponsor-tier-label {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+}
+.sponsor-tier-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 .sponsor-slot {
-  height: 150px;
   border-radius: var(--radius);
   border: 1px dashed rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.04);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .sponsor-slot span {
-  width: 64px;
-  height: 64px;
   border-radius: 50%;
   background: rgba(255,255,255,0.06);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Poppins', sans-serif;
-  font-size: 22px;
   color: rgba(255,255,255,0.5);
 }
+.sponsor-slot-filled {
+  border-style: solid;
+  border-color: rgba(255,255,255,0.1);
+  background: #fff;
+  padding: 16px;
+}
+.sponsor-slot img { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; }
+
+.sponsor-slot-platinum { width: 320px; height: 190px; }
+.sponsor-slot-platinum span { width: 72px; height: 72px; font-size: 24px; }
+.sponsor-slot-gold { width: 260px; height: 160px; }
+.sponsor-slot-gold span { width: 62px; height: 62px; font-size: 22px; }
+.sponsor-slot-silver { width: 220px; height: 138px; }
+.sponsor-slot-silver span { width: 54px; height: 54px; font-size: 20px; }
+.sponsor-slot-bronze { width: 150px; height: 106px; }
+.sponsor-slot-bronze span { width: 44px; height: 44px; font-size: 16px; }
 .sponsor-divider {
   margin: 56px auto;
   max-width: 200px;
@@ -888,7 +912,6 @@ a.contact-value:hover { color: var(--ink); }
   .about-visual { position: static; }
   .about-image { height: 320px; }
   .speaker-grid { grid-template-columns: repeat(2, 1fr); }
-  .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
   .sponsor-row { grid-template-columns: repeat(2, 1fr); }
   .pricing-grid { grid-template-columns: 1fr; }
   .program-timeline { --timeline-offset: 102px; }
@@ -934,6 +957,9 @@ a.contact-value:hover { color: var(--ink); }
   .speaker-placeholder-desktop-only { display: none; }
   .speaker-card-featured .speaker-avatar { aspect-ratio: 4 / 3; }
   .speaker-avatar-img[src*="gorkem-ihlamur"] { object-position: 20% 40%; transform-origin: 20% 40%; }
-  .sponsor-grid { grid-template-columns: repeat(2, 1fr); }
   .sponsor-row { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .sponsor-slot-platinum { width: 220px; height: 140px; }
+  .sponsor-slot-gold { width: 190px; height: 122px; }
+  .sponsor-slot-silver { width: 160px; height: 104px; }
+  .sponsor-slot-bronze { width: 130px; height: 92px; }
 }
