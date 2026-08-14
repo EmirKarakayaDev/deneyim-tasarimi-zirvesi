@@ -643,6 +643,10 @@ a { color: inherit; text-decoration: none; }
   color: rgba(255,255,255,0.4);
   margin-bottom: 18px;
 }
+.sponsor-tier-platinum .sponsor-tier-label { color: #d9dee6; }
+.sponsor-tier-gold .sponsor-tier-label { color: #d4af37; }
+.sponsor-tier-silver .sponsor-tier-label { color: #adb4bf; }
+.sponsor-tier-bronze .sponsor-tier-label { color: #cd8b4e; }
 .sponsor-tier-row {
   display: flex;
   align-items: center;
