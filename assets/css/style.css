@@ -647,6 +647,7 @@ a { color: inherit; text-decoration: none; }
 .sponsor-tier-gold .sponsor-tier-label { color: #d4af37; }
 .sponsor-tier-silver .sponsor-tier-label { color: #adb4bf; }
 .sponsor-tier-bronze .sponsor-tier-label { color: #cd8b4e; }
+.sponsor-tier-destek .sponsor-tier-label { color: rgba(255,255,255,0.45); }
 .sponsor-tier-row {
   display: flex;
   align-items: center;
@@ -682,12 +683,14 @@ a { color: inherit; text-decoration: none; }
 
 .sponsor-slot-platinum { width: 320px; height: 190px; }
 .sponsor-slot-platinum span { width: 72px; height: 72px; font-size: 24px; }
-.sponsor-slot-gold { width: 260px; height: 160px; }
-.sponsor-slot-gold span { width: 62px; height: 62px; font-size: 22px; }
-.sponsor-slot-silver { width: 220px; height: 138px; }
-.sponsor-slot-silver span { width: 54px; height: 54px; font-size: 20px; }
-.sponsor-slot-bronze { width: 150px; height: 106px; }
-.sponsor-slot-bronze span { width: 44px; height: 44px; font-size: 16px; }
+.sponsor-slot-gold { width: 270px; height: 165px; }
+.sponsor-slot-gold span { width: 64px; height: 64px; font-size: 22px; }
+.sponsor-slot-silver { width: 230px; height: 142px; }
+.sponsor-slot-silver span { width: 56px; height: 56px; font-size: 20px; }
+.sponsor-slot-bronze { width: 195px; height: 122px; }
+.sponsor-slot-bronze span { width: 48px; height: 48px; font-size: 18px; }
+.sponsor-slot-destek { width: 175px; height: 110px; }
+.sponsor-slot-destek span { width: 44px; height: 44px; font-size: 17px; }
 .sponsor-divider {
   margin: 56px auto;
   max-width: 200px;
@@ -698,13 +701,15 @@ a { color: inherit; text-decoration: none; }
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 .sponsor-badge {
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  width: 125px;
+  height: 125px;
   border-radius: var(--radius);
   overflow: hidden;
   display: flex;
@@ -916,7 +921,6 @@ a.contact-value:hover { color: var(--ink); }
   .about-visual { position: static; }
   .about-image { height: 320px; }
   .speaker-grid { grid-template-columns: repeat(2, 1fr); }
-  .sponsor-row { grid-template-columns: repeat(2, 1fr); }
   .pricing-grid { grid-template-columns: 1fr; }
   .program-timeline { --timeline-offset: 102px; }
   .timeline-item { grid-template-columns: 84px 1fr; gap: 18px; }
@@ -961,9 +965,11 @@ a.contact-value:hover { color: var(--ink); }
   .speaker-placeholder-desktop-only { display: none; }
   .speaker-card-featured .speaker-avatar { aspect-ratio: 4 / 3; }
   .speaker-avatar-img[src*="gorkem-ihlamur"] { object-position: 20% 40%; transform-origin: 20% 40%; }
-  .sponsor-row { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .sponsor-row { gap: 16px; }
+  .sponsor-badge { width: 95px; height: 95px; }
   .sponsor-slot-platinum { width: 220px; height: 140px; }
-  .sponsor-slot-gold { width: 190px; height: 122px; }
-  .sponsor-slot-silver { width: 160px; height: 104px; }
-  .sponsor-slot-bronze { width: 130px; height: 92px; }
+  .sponsor-slot-gold { width: 195px; height: 122px; }
+  .sponsor-slot-silver { width: 168px; height: 108px; }
+  .sponsor-slot-bronze { width: 145px; height: 95px; }
+  .sponsor-slot-destek { width: 130px; height: 87px; }
 }
