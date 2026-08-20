@@ -306,7 +306,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 16px;
   width: max-content;
-  animation: marquee 130s linear infinite;
+  animation: marquee 90s linear infinite;
 }
 .companies-track:hover { animation-play-state: paused; }
 @keyframes marquee {
